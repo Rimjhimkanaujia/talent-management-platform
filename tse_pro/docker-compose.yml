@@ -1,0 +1,15 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8501:8501"
+    environment:
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - TSE_SEED_ADMIN_EMAIL=${TSE_SEED_ADMIN_EMAIL:-admin@talentsphere.com}
+      - TSE_SEED_ADMIN_PASSWORD=${TSE_SEED_ADMIN_PASSWORD:-admin123}
+    volumes:
+      - tse_data:/app/data
+    restart: unless-stopped
+
+volumes:
+  tse_data:
